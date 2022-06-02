@@ -1,0 +1,34 @@
+{
+  "required_api_version": "^2.0.0",
+  "name": "Vs Folder",
+  "description": "Allow you to open vscode folders",
+  "developer_name": "Fernando Pérez",
+  "icon": "images/icon.png",
+  "options": {
+    "query_debounce": 0.05
+  },
+  "preferences": [
+    {
+      "id": "vs_kw",
+      "type": "keyword",
+      "name": "Open with Vscode in folder",
+      "description": "Search folder to open vscode",
+      "default_value": "vs"
+    },
+    {
+      "id": "home_input",
+      "type": "input",
+      "name": "Vscode folder home",
+      "description": "Where the navigation starts (empty is the user directory)",
+      "default_value": ""
+    },
+    {
+      "id": "show_hidden",
+      "type": "select",
+      "name": "Show hidden folders",
+      "description": "Do you want to see hidden folders?",
+      "default_value": "False",
+      "options": ["False", "True"]
+    }
+  ]
+}
