@@ -145,6 +145,12 @@ def build_list_of_folders(
             key=lambda folder: - folder.stat().st_mtime
         )
 
+    vs_keyword = extension.preferences.get('vs_kw')
+    home = str(extension.home) + os.sep
+    try_relative_folder = str(folder)
+    if try_relative_folder.startswith(home):
+        try_relative_folder = try_relative_folder.replace(home, '', 1)
+
     items = [
         ExtensionResultItem(
             icon='images/open-folder.png',
@@ -156,7 +162,7 @@ def build_list_of_folders(
         ExtensionResultItem(
             icon='images/inner-folder.png',
             name='Go to parent',
-            description=f'Vs folder: {folder.parent()}',
+            description=f'Vs folder: {folder.parent}',
             on_enter=ActionList([
                 SetUserQueryAction(
                     f'{vs_keyword} {try_relative_folder}{os.sep}..{os.sep}'
@@ -166,8 +172,6 @@ def build_list_of_folders(
         )
     ]
 
-    home = str(extension.home) + os.sep
-    vs_keyword = extension.preferences.get('vs_kw')
     for folder in folders[:limit_folders_to_show]:
         try_relative_folder = str(folder)
         if try_relative_folder.startswith(home):
