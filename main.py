@@ -152,6 +152,17 @@ def build_list_of_folders(
             description=f'Vs folder: {folder}',
             on_enter=ExtensionCustomAction(
                 OpenFolder(folder), keep_app_open=False),
+        ),
+        ExtensionResultItem(
+            icon='images/inner-folder.png',
+            name='Go to parent',
+            description=f'Vs folder: {folder.parent()}',
+            on_enter=ActionList([
+                SetUserQueryAction(
+                    f'{vs_keyword} {try_relative_folder}{os.sep}..{os.sep}'
+                ),
+                ExtensionCustomAction(folder, keep_app_open=True)
+            ]),
         )
     ]
 
